@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Booking Confirmed | Yashneesh Fun World</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+.success-shell { padding:132px 0 80px; }
+.success-layout { display:grid; grid-template-columns:.9fr 1.1fr; gap:22px; align-items:start; }
+.success-side { display:grid; gap:18px; }
+.success-card, .success-side-card, .eticket { padding:28px; }
+.success-title { font-family:'Cormorant Garamond',serif; font-size:clamp(3rem,6vw,5rem); line-height:.92; margin:14px 0 10px; }
+.success-sub, .success-side-card p { color:var(--muted); line-height:1.8; }
+.eticket { border-radius:var(--radius-lg); background:rgba(140,236,255,.05); border:1px solid rgba(140,236,255,.2); margin-top:24px; }
+.eticket-ref { font-size:2.2rem; font-weight:800; color:var(--brand); margin-bottom:4px; }
+.eticket-ref-label { color:var(--muted-soft); font-size:.82rem; letter-spacing:.18em; text-transform:uppercase; margin-bottom:18px; }
+.eticket-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.eticket-field { padding:16px; border-radius:18px; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); }
+.eticket-field-label { color:var(--muted-soft); font-size:.8rem; letter-spacing:.14em; text-transform:uppercase; margin-bottom:8px; }
+.eticket-field-value { font-weight:800; }
+.eticket-footer { display:flex; justify-content:space-between; gap:18px; align-items:center; margin-top:22px; padding-top:20px; border-top:1px solid rgba(255,255,255,.08); }
+.eticket-instructions { color:var(--muted); line-height:1.8; font-size:.92rem; }
+.eticket-qr { min-width:88px; min-height:88px; display:inline-flex; align-items:center; justify-content:center; border-radius:18px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12); color:var(--text); font-weight:800; }
+.actions { display:flex; gap:12px; margin-top:24px; flex-wrap:wrap; }
+@media (max-width:960px){ .success-layout, .eticket-grid { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<nav id="navbar"><div class="container nav-inner"><a href="index.html" class="nav-logo">Yashneesh <span>Fun World</span></a><ul class="nav-links" id="navLinks"><li><a href="index.html">Home</a></li><li><a href="rides.html">Rides</a></li><li><a href="tickets.html">Tickets</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="contact.html">Contact</a></li><li><a href="booking.html" class="nav-book">Book Now</a></li></ul><button class="nav-hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button></div></nav>
+<section class="success-shell">
+  <div class="container success-layout">
+    <aside class="success-side">
+      <div class="success-side-card card reveal"><span class="pill success">Confirmed</span><h3 style="font-family:'Cormorant Garamond',serif; font-size:2rem; margin:12px 0 8px;">Premium confirmation experience</h3><p>Your booking is secured and your ticket details are ready in a calm, polished confirmation layout.</p></div>
+      <div class="success-side-card card reveal"><span class="pill sand">Need help?</span><p>If you need booking support, call <a href="tel:+918884142211" style="color:var(--brand);">+91 88841 42211</a> and share your booking reference.</p></div>
+    </aside>
+    <main class="success-card card reveal">
+      <div class="eyebrow"><span class="live-dot"></span> Reservation secured</div>
+      <h1 class="success-title">Booking Confirmed</h1>
+      <p class="success-sub">Your e-ticket details are ready below.</p>
+      <div class="eticket" id="eticket"><div id="ticketContent" style="color:var(--muted);">Loading your ticket details...</div></div>
+      <div class="actions"><button class="btn btn-outline" onclick="window.print()" type="button">Print ticket</button><a href="index.html" class="btn btn-outline">Back to home</a><a href="booking.html" class="btn btn-primary">Book another visit</a></div>
+    </main>
+  </div>
+</section>
+<footer><div class="container"><div class="footer-bottom"><div class="footer-copy">&copy; 2026 Yashneesh Fun World.</div><div class="footer-copy">Belagavi, Karnataka | Daily 10:30 AM to 4:00 PM</div></div></div></footer>
+<div id="toast"></div>
+<script src="js/main.js"></script>
+<script>
+async function loadBooking() {
+  const ref = new URLSearchParams(window.location.search).get('ref');
+  if (!ref) {
+    document.getElementById('ticketContent').innerHTML = '<p style="color:#ffb9ab;">Booking reference missing.</p>';
+    return;
+  }
+  try {
+    const response = await fetch(`/api/bookings/${ref}`);
+    const payload = await response.json();
+    const booking = payload.data;
+    if (!booking) throw new Error('Booking not found');
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const formatDate = (value) => { const [year, month, day] = value.split('-'); return `${day} ${months[Number(month)-1]} ${year}`; };
+    const createdAt = new Date(booking.created_at);
+    const bookedOn = `${createdAt.getDate()} ${months[createdAt.getMonth()]} ${createdAt.getFullYear()}`;
+    document.getElementById('ticketContent').innerHTML = `
+      <div class="eticket-ref">${booking.booking_ref}</div>
+      <div class="eticket-ref-label">Booking reference</div>
+      <div class="eticket-grid">
+        <div class="eticket-field"><div class="eticket-field-label">Visitor</div><div class="eticket-field-value">${booking.customer_name}</div></div>
+        <div class="eticket-field"><div class="eticket-field-label">Mobile</div><div class="eticket-field-value">${booking.customer_phone}</div></div>
+        <div class="eticket-field"><div class="eticket-field-label">Visit date</div><div class="eticket-field-value">${formatDate(booking.visit_date)}</div></div>
+        <div class="eticket-field"><div class="eticket-field-label">Ticket type</div><div class="eticket-field-value">${booking.ticket_name}</div></div>
+        <div class="eticket-field"><div class="eticket-field-label">Quantity</div><div class="eticket-field-value">${booking.quantity}</div></div>
+        <div class="eticket-field"><div class="eticket-field-label">Amount paid</div><div class="eticket-field-value">INR ${booking.total_amount}</div></div>
+      </div>
+      <div class="eticket-footer">
+        <div class="eticket-instructions">Status: ${String(booking.payment_status).toUpperCase()}<br>Booked on: ${bookedOn}<br>Carry a valid photo ID on arrival.</div>
+        <div class="eticket-qr">E-Ticket</div>
+      </div>
+    `;
+  } catch (error) {
+    document.getElementById('ticketContent').innerHTML = '<p style="color:#ffb9ab;">We could not load the booking details. Please check your confirmation email or contact support.</p>';
+  }
+}
+loadBooking();
+</script>
+</body>
+</html>

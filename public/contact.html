@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact | Yashneesh Fun World</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+.page-shell { padding:132px 0 72px; }
+.hero-card { padding:34px; }
+.contact-layout { display:grid; grid-template-columns:.9fr 1.1fr; gap:22px; margin-top:26px; }
+.contact-stack { display:grid; gap:16px; }
+.info-card, .contact-form { padding:26px; }
+.info-card strong { display:block; margin-bottom:10px; }
+.info-card p, .contact-form p { color:var(--muted); line-height:1.8; }
+.contact-form h3 { font-family:'Cormorant Garamond',serif; font-size:2.2rem; margin:10px 0 8px; }
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.form-group { margin-top:16px; }
+.form-label { display:block; margin-bottom:8px; color:var(--muted); font-size:.9rem; font-weight:700; }
+.submit-btn { width:100%; margin-top:18px; }
+.map-shell { overflow:hidden; border-radius:var(--radius-lg); border:1px solid var(--border); box-shadow:var(--shadow-lg); margin-top:26px; }
+.map-shell iframe { width:100%; min-height:480px; border:none; }
+@media (max-width:900px){ .contact-layout, .form-row { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<nav id="navbar"><div class="container nav-inner"><a href="index.html" class="nav-logo">Yashneesh <span>Fun World</span></a><ul class="nav-links" id="navLinks"><li><a href="index.html">Home</a></li><li><a href="rides.html">Rides</a></li><li><a href="tickets.html">Tickets</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="contact.html">Contact</a></li><li><a href="booking.html" class="nav-book">Book Now</a></li></ul><button class="nav-hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button></div></nav>
+<button id="sticky-cta" onclick="location.href='booking.html'">Book Tickets</button>
+<section class="page-shell">
+  <div class="container">
+    <div class="hero-card card fade-in">
+      <div class="eyebrow"><span class="live-dot"></span> Contact and visit support</div>
+      <h1 class="page-hero-title">Get In Touch And Plan Your Visit</h1>
+      <p class="lead">Reach the park team for group bookings, birthdays, support requests, and visit planning with a clear premium contact flow.</p>
+    </div>
+    <div class="contact-layout">
+      <div class="contact-stack">
+        <article class="info-card card reveal"><strong>Location</strong><p>Navage Road, Kuttalawadi, Belagavi, Karnataka 590018.</p></article>
+        <article class="info-card card reveal"><strong>Phone</strong><p><a href="tel:+918884142211" style="color:var(--brand);">+91 88841 42211</a><br>Available daily between 9:00 AM and 6:00 PM.</p></article>
+        <article class="info-card card reveal"><strong>Email</strong><p><a href="mailto:info@yashneeshfunworld.com" style="color:var(--brand);">info@yashneeshfunworld.com</a><br>Useful for group visits, birthdays, and support requests.</p></article>
+        <article class="info-card card reveal"><strong>Park Hours</strong><p>Open every day from 10:30 AM to 4:00 PM.</p></article>
+      </div>
+      <div class="contact-form card reveal">
+        <span class="pill brand">Send an enquiry</span>
+        <h3>Plan your visit confidently</h3>
+        <p>Use this form for group bookings, birthdays, school visits, or general support.</p>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label" for="cName">Full name</label><input type="text" id="cName" placeholder="Enter your name"></div>
+          <div class="form-group"><label class="form-label" for="cPhone">Mobile number</label><input type="tel" id="cPhone" placeholder="10-digit number"></div>
+        </div>
+        <div class="form-group"><label class="form-label" for="cEmail">Email address</label><input type="email" id="cEmail" placeholder="your@email.com"></div>
+        <div class="form-group"><label class="form-label" for="cSubject">Subject</label><select id="cSubject"><option value="">Select a subject</option><option>Group booking enquiry</option><option>Birthday celebration</option><option>Corporate outing</option><option>School or college trip</option><option>General information</option></select></div>
+        <div class="form-group"><label class="form-label" for="cMessage">Message</label><textarea id="cMessage" rows="6" placeholder="Tell us the visit date, group size, or anything you need help with."></textarea></div>
+        <button class="btn btn-primary submit-btn" id="submitContactBtn" onclick="submitContact()">Send Message</button>
+      </div>
+    </div>
+    <div class="map-shell reveal" id="map"><iframe src="https://maps.google.com/maps?q=Yashneesh+Fun+World+Belagavi&t=&z=14&ie=UTF8&iwloc=&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div>
+  </div>
+</section>
+<footer><div class="container"><div class="footer-grid"><div><div class="footer-logo">Yashneesh Fun World</div><p class="footer-about">A premium contact experience with clear support details for tickets, groups, and park visits.</p></div><div><div class="footer-heading">Explore</div><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="rides.html">Rides</a></li><li><a href="gallery.html">Gallery</a></li></ul></div><div><div class="footer-heading">Book</div><ul class="footer-links"><li><a href="tickets.html">Tickets</a></li><li><a href="booking.html">Book now</a></li></ul></div><div><div class="footer-heading">Reach us</div><ul class="footer-links"><li><a href="tel:+918884142211">+91 88841 42211</a></li><li><a href="mailto:info@yashneeshfunworld.com">info@yashneeshfunworld.com</a></li><li>Belagavi, Karnataka</li></ul></div></div><div class="footer-bottom"><div class="footer-copy">&copy; 2026 Yashneesh Fun World.</div></div></div></footer>
+<div id="toast"></div>
+<script src="js/main.js"></script>
+<script>
+function submitContact() {
+  const name = document.getElementById('cName').value.trim();
+  const phone = document.getElementById('cPhone').value.trim();
+  const email = document.getElementById('cEmail').value.trim();
+  const message = document.getElementById('cMessage').value.trim();
+  if (!name || !phone || !email || !message) return showToast('Please fill in all required contact details.', 'error');
+  if (!/^\d{10}$/.test(phone)) return showToast('Please enter a valid 10-digit phone number.', 'error');
+  const button = document.getElementById('submitContactBtn');
+  button.disabled = true;
+  button.textContent = 'Sending...';
+  setTimeout(() => {
+    button.disabled = false;
+    button.textContent = 'Send Message';
+    ['cName', 'cPhone', 'cEmail', 'cMessage'].forEach((id) => { document.getElementById(id).value = ''; });
+    document.getElementById('cSubject').value = '';
+    showToast('Message sent successfully. We will get back to you soon.', 'success');
+  }, 1000);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rides & Attractions | Yashneesh Fun World</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+.page-shell { padding: 132px 0 72px; }
+.hero-card { padding: 34px; }
+.hero-card .page-hero-title { max-width: 860px; }
+.rides-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; margin-top:28px; }
+.ride-card { padding:24px; position:relative; overflow:hidden; }
+.ride-card::before { content:''; position:absolute; inset:auto -40px -40px auto; width:120px; height:120px; border-radius:50%; background:radial-gradient(circle, rgba(140,236,255,.16), transparent 70%); }
+.ride-card > * { position:relative; z-index:1; }
+.ride-number { font-family:'Cormorant Garamond',serif; font-size:3rem; color:rgba(140,236,255,.32); line-height:1; }
+.ride-card h3 { font-family:'Cormorant Garamond',serif; font-size:2rem; margin:6px 0 10px; }
+.ride-card p { color:var(--muted); line-height:1.8; margin-bottom:16px; }
+.ride-facts { display:flex; flex-wrap:wrap; gap:10px; }
+.ride-facts span { padding:8px 12px; border-radius:999px; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); color:var(--muted); font-size:.82rem; }
+@media (max-width:1020px){ .rides-grid{ grid-template-columns:1fr 1fr; } }
+@media (max-width:680px){ .rides-grid{ grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">Yashneesh <span>Fun World</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li><li><a href="rides.html">Rides</a></li><li><a href="tickets.html">Tickets</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="contact.html">Contact</a></li><li><a href="booking.html" class="nav-book">Book Now</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<button id="sticky-cta" onclick="location.href='booking.html'">Book Tickets</button>
+<section class="page-shell">
+  <div class="container">
+    <div class="hero-card card fade-in">
+      <div class="eyebrow"><span class="live-dot"></span> Signature rides and attractions</div>
+      <h1 class="page-hero-title">Rides And Attractions For Every Kind Of Park Day</h1>
+      <p class="lead">Explore the park's biggest highlights, from family favorites to high-energy attractions that shape the full Yashneesh Fun World experience.</p>
+    </div>
+    <div class="rides-grid">
+      <article class="ride-card card reveal"><div class="ride-number">01</div><span class="pill brand">Signature</span><h3>Wave Pool</h3><p>A shared centerpiece for families, groups, and first-time visitors looking for the park's biggest water moment.</p><div class="ride-facts"><span>All ages</span><span>Main attraction</span><span>Family favorite</span></div></article>
+      <article class="ride-card card reveal"><div class="ride-number">02</div><span class="pill coral">High thrill</span><h3>Giant Slides</h3><p>Fast splash zones built for adrenaline and repeat rides, presented cleanly without turning the page into another photo wall.</p><div class="ride-facts"><span>10+ years</span><span>Thrill zone</span><span>Fast drop</span></div></article>
+      <article class="ride-card card reveal"><div class="ride-number">03</div><span class="pill sand">Group energy</span><h3>Rain Dance</h3><p>Music, motion, and a social atmosphere that works especially well for celebrations, team outings, and weekend visits.</p><div class="ride-facts"><span>DJ vibe</span><span>All day</span><span>Popular zone</span></div></article>
+      <article class="ride-card card reveal"><div class="ride-number">04</div><span class="pill brand">Relaxed</span><h3>Lazy River</h3><p>A calmer part of the park that keeps the overall experience balanced and more family-friendly.</p><div class="ride-facts"><span>All ages</span><span>Slow float</span><span>Cool-down spot</span></div></article>
+      <article class="ride-card card reveal"><div class="ride-number">05</div><span class="pill sand">Kids zone</span><h3>Splash Area</h3><p>A softer activity space for younger visitors, designed to keep the family experience easy and comfortable.</p><div class="ride-facts"><span>Below 10</span><span>Safe play</span><span>Supervised</span></div></article>
+      <article class="ride-card card reveal"><div class="ride-number">06</div><span class="pill coral">Adventure</span><h3>Challenge Wall</h3><p>Extra variety for guests who want more than the pools and slides during their day out.</p><div class="ride-facts"><span>8+ years</span><span>Adventure</span><span>Group challenge</span></div></article>
+    </div>
+  </div>
+</section>
+<footer><div class="container"><div class="footer-grid"><div><div class="footer-logo">Yashneesh Fun World</div><p class="footer-about">Discover signature slides, splash zones, and family attractions in a polished rides overview.</p></div><div><div class="footer-heading">Explore</div><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="tickets.html">Tickets</a></li><li><a href="gallery.html">Gallery</a></li></ul></div><div><div class="footer-heading">Book</div><ul class="footer-links"><li><a href="booking.html">Book now</a></li><li><a href="contact.html">Contact</a></li></ul></div><div><div class="footer-heading">Visit</div><ul class="footer-links"><li>Belagavi, Karnataka</li><li>10:30 AM to 4:00 PM</li></ul></div></div><div class="footer-bottom"><div class="footer-copy">&copy; 2026 Yashneesh Fun World.</div></div></div></footer>
+<div id="toast"></div>
+<script src="js/main.js"></script>
+</body>
+</html>

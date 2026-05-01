@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Admin Login | Yashneesh Fun World</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--navy:#050f1e;--deep:#071428;--cyan:#00d4ff;--aqua:#00ffcc;--coral:#ff6b4a;--border:rgba(255,255,255,.09);--card:rgba(255,255,255,.05)}
+body{font-family:'Nunito',sans-serif;background:var(--navy);color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 30% 40%,rgba(0,212,255,.1) 0%,transparent 55%),radial-gradient(ellipse at 70% 70%,rgba(0,255,204,.06) 0%,transparent 50%);pointer-events:none}
+.login-box{background:var(--deep);border:1.5px solid var(--border);border-radius:24px;padding:48px 44px;width:100%;max-width:460px;box-shadow:0 24px 80px rgba(0,0,0,.6)}
+.login-logo{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:2px;text-align:center;background:linear-gradient(135deg,var(--cyan),var(--aqua));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:6px}
+.login-sub{text-align:center;font-size:13px;color:rgba(255,255,255,.42);margin-bottom:28px}
+.info-box,.error-box{border-radius:12px;padding:12px 16px;font-size:13px;display:none;margin-bottom:16px;line-height:1.6}
+.info-box{background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.22);color:var(--cyan)}
+.error-box{background:rgba(255,107,74,.1);border:1px solid rgba(255,107,74,.3);color:var(--coral)}
+.form-group{margin-bottom:18px}
+.form-label{display:block;font-size:13px;font-weight:700;color:rgba(255,255,255,.65);margin-bottom:8px}
+input{width:100%;background:var(--card);border:1.5px solid var(--border);border-radius:12px;padding:14px 16px;color:#fff;font-family:'Nunito',sans-serif;font-size:15px;outline:none;transition:all .25s}
+input:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,212,255,.1)}
+input::placeholder{color:rgba(255,255,255,.3)}
+.login-btn{width:100%;padding:16px;border-radius:100px;background:linear-gradient(135deg,var(--cyan),var(--aqua));color:var(--navy);font-family:'Nunito',sans-serif;font-weight:900;font-size:16px;border:none;cursor:pointer;transition:all .3s;margin-top:8px}
+.login-btn:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,212,255,.45)}
+.login-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.back-link{display:block;text-align:center;margin-top:24px;font-size:13px;color:rgba(255,255,255,.35);text-decoration:none;transition:color .2s}
+.back-link:hover{color:var(--cyan)}
+.spinner{display:inline-block;width:18px;height:18px;border:2px solid rgba(5,15,30,.4);border-top-color:var(--navy);border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<div class="login-box">
+  <div class="login-logo">Admin Portal</div>
+  <div class="login-sub">Yashneesh Fun World Management Dashboard</div>
+  <div class="info-box" id="infoBox"></div>
+  <div class="error-box" id="errorBox"></div>
+  <div class="form-group">
+    <label class="form-label">Username</label>
+    <input type="text" id="username" placeholder="Enter username" autocomplete="username">
+  </div>
+  <div class="form-group">
+    <label class="form-label">Password</label>
+    <input type="password" id="password" placeholder="Enter password" autocomplete="current-password" onkeydown="if(event.key==='Enter')login()">
+  </div>
+  <button class="login-btn" id="loginBtn" onclick="login()">Login to Dashboard</button>
+  <a href="/index.html" class="back-link">Back to Website</a>
+</div>
+<script>
+if (localStorage.getItem('admin_preview_mode') === 'true') {
+  localStorage.removeItem('admin_preview_mode');
+  localStorage.removeItem('admin_token');
+  localStorage.removeItem('admin_user');
+}
+if (localStorage.getItem('admin_token')) window.location.href = '/admin/dashboard.html';
+
+async function login() {
+  const username = document.getElementById('username').value.trim();
+  const password = document.getElementById('password').value;
+  const btn = document.getElementById('loginBtn');
+  const errBox = document.getElementById('errorBox');
+  const infoBox = document.getElementById('infoBox');
+
+  errBox.style.display = 'none';
+  infoBox.style.display = 'none';
+
+  if (!username || !password) {
+    errBox.textContent = 'Please enter username and password.';
+    errBox.style.display = 'block';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span> Logging in...';
+
+  try {
+    const res = await fetch('/api/admin/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, password }),
+    });
+
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Invalid credentials');
+
+    localStorage.setItem('admin_token', data.token);
+    localStorage.setItem('admin_user', JSON.stringify(data.admin));
+    window.location.href = '/admin/dashboard.html';
+  } catch (err) {
+    if ((err.message || '').includes('Failed to fetch')) {
+      errBox.textContent = 'Admin API is unavailable. Please make sure the backend server is running.';
+      infoBox.textContent = 'The website can open even when the Node API is offline. Admin login needs the backend.';
+      infoBox.style.display = 'block';
+    } else {
+      errBox.textContent = err.message;
+    }
+    errBox.style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = 'Login to Dashboard';
+  }
+}
+</script>
+</body>
+</html>

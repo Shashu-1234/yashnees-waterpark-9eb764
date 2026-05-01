@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Tickets | Yashneesh Fun World</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<style>
+.booking-shell { padding:132px 0 84px; }
+.booking-layout { display:grid; grid-template-columns:.9fr 1.1fr; gap:22px; align-items:start; }
+.booking-side { display:grid; gap:18px; position:sticky; top:104px; }
+.booking-side-card, .booking-card { padding:28px; }
+.booking-side-card h2, .booking-card h3 { font-family:'Cormorant Garamond',serif; }
+.booking-side-card h2 { font-size:2.35rem; line-height:.95; margin:12px 0 10px; }
+.booking-side-card p, .booking-side-card li, .booking-card > p { color:var(--muted); line-height:1.8; }
+.booking-side-card ul { list-style:none; display:grid; gap:10px; margin-top:16px; }
+.steps-bar { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:28px; }
+.step-wrap { display:flex; align-items:center; gap:12px; padding:14px 16px; border-radius:20px; background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.08); }
+.step-circle { width:36px; height:36px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-weight:800; border:1px solid rgba(255,255,255,.14); color:var(--muted); }
+.step-circle.active { background:linear-gradient(135deg, var(--brand), var(--mint)); border-color:transparent; color:#08101c; }
+.step-circle.done { background:rgba(121,233,171,.18); border-color:rgba(121,233,171,.32); color:var(--success); }
+.step-label { color:var(--muted); font-size:.88rem; font-weight:700; }
+.step-label.active { color:var(--text); }
+.step-line { display:none; }
+.panel { display:none; }
+.panel.active { display:block; }
+.booking-card h3 { font-size:2.2rem; margin-bottom:6px; }
+.ticket-option { display:flex; align-items:center; gap:16px; padding:18px; border-radius:22px; border:1px solid rgba(255,255,255,.1); background:rgba(255,255,255,.03); margin-bottom:14px; transition:var(--transition); }
+.ticket-option:hover, .ticket-option.selected { border-color:rgba(140,236,255,.36); background:rgba(140,236,255,.08); }
+.ticket-option input[type="radio"] { width:18px; height:18px; accent-color:var(--brand-strong); }
+.ticket-opt-info { flex:1; }
+.ticket-opt-name { font-weight:800; margin-bottom:4px; }
+.ticket-opt-desc { color:var(--muted); font-size:.92rem; }
+.ticket-opt-price { font-size:1.5rem; font-weight:800; color:var(--brand); }
+.form-group { margin-bottom:16px; }
+.form-label { display:block; margin-bottom:8px; color:var(--muted); font-size:.9rem; font-weight:700; }
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.qty-control { display:inline-flex; align-items:center; border-radius:999px; overflow:hidden; border:1px solid rgba(255,255,255,.1); background:rgba(255,255,255,.04); }
+.qty-btn { width:48px; height:48px; background:transparent; color:var(--text); font-size:1.4rem; }
+.qty-val { min-width:56px; text-align:center; font-weight:800; }
+.summary-card { padding:24px; border-radius:24px; background:rgba(140,236,255,.06); border:1px solid rgba(140,236,255,.18); margin-bottom:20px; }
+.summary-row { display:flex; justify-content:space-between; gap:16px; padding:12px 0; border-bottom:1px solid rgba(255,255,255,.08); color:var(--muted); }
+.summary-row:last-child { border-bottom:none; }
+.summary-val { color:var(--text); font-weight:800; text-align:right; }
+.total-val { color:var(--brand); }
+.nav-btns { display:flex; gap:12px; margin-top:18px; flex-wrap:wrap; }
+.pay-btn { width:100%; padding:18px; border-radius:999px; background:linear-gradient(135deg, var(--brand), var(--mint)); color:#08101c; font-size:1rem; font-weight:800; box-shadow:0 16px 38px rgba(54,215,255,.25); }
+.pay-btn:disabled { opacity:.7; }
+.razorpay-note,.error-msg,.helper-copy { color:var(--muted); font-size:.9rem; line-height:1.7; }
+.error-msg { color:#ffb9ab; display:none; margin-top:12px; }
+.spinner { display:inline-block; width:18px; height:18px; border:2px solid rgba(8,16,28,.35); border-top-color:#08101c; border-radius:50%; animation:spin .8s linear infinite; }
+@keyframes spin { to { transform:rotate(360deg);} }
+@media (max-width:980px){ .booking-layout, .form-row, .steps-bar { grid-template-columns:1fr; } .booking-side{ position:static; } }
+</style>
+</head>
+<body>
+<nav id="navbar"><div class="container nav-inner"><a href="index.html" class="nav-logo">Yashneesh <span>Fun World</span></a><ul class="nav-links" id="navLinks"><li><a href="index.html">Home</a></li><li><a href="rides.html">Rides</a></li><li><a href="tickets.html">Tickets</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="contact.html">Contact</a></li><li><a href="booking.html" class="nav-book">Book Now</a></li></ul><button class="nav-hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button></div></nav>
+<section class="booking-shell">
+  <div class="container booking-layout">
+    <aside class="booking-side">
+      <div class="booking-side-card card reveal"><span class="pill brand">Premium booking page</span><h2>Clean booking flow for a faster reservation</h2><p>Choose your pass, fill in your details, and complete payment through a simpler three-step booking experience.</p><ul><li>Clear three-step flow</li><li>Improved readability</li><li>Cleaner ticket selection</li></ul></div>
+      <div class="booking-side-card card reveal"><span class="pill sand">Need help?</span><p>Call <a href="tel:+918884142211" style="color:var(--brand);">+91 88841 42211</a> if you need help with large groups or booking issues.</p></div>
+    </aside>
+    <main class="booking-card card reveal">
+      <div class="eyebrow"><span class="live-dot"></span> Instant confirmation</div>
+      <h3>Reserve Your Visit</h3>
+      <p>Choose a pass, enter your details, and pay securely through Razorpay.</p>
+      <div class="steps-bar" id="stepsBar">
+        <div class="step-wrap"><div class="step-circle active" id="sc1">1</div><div class="step-label active" id="sl1">Choose ticket</div></div>
+        <div class="step-wrap"><div class="step-circle" id="sc2">2</div><div class="step-label" id="sl2">Your details</div></div>
+        <div class="step-wrap"><div class="step-circle" id="sc3">3</div><div class="step-label" id="sl3">Review and pay</div></div>
+        <div class="step-line" id="line1"></div><div class="step-line" id="line2"></div>
+      </div>
+      <div class="panel active" id="panel1">
+        <h3>Select Your Pass</h3><p>Choose the ticket that fits your visit plan.</p>
+        <div id="ticketOptions"><div class="helper-copy">Loading tickets...</div></div>
+        <div class="form-group" style="margin-top:24px;"><label class="form-label" for="visitDate">Visit date</label><input type="date" id="visitDate" min=""></div>
+        <div class="form-group"><label class="form-label">Number of tickets</label><div class="qty-control"><button class="qty-btn" onclick="changeQty(-1)" type="button">-</button><span class="qty-val" id="qtyDisplay">1</span><button class="qty-btn" onclick="changeQty(1)" type="button">+</button></div><p class="helper-copy" style="margin-top:10px;">Maximum 20 tickets per booking.</p></div>
+        <div id="p1error" class="error-msg"></div>
+        <button class="btn btn-primary" style="width:100%; margin-top:10px;" onclick="goToStep2()" type="button">Continue to details</button>
+      </div>
+      <div class="panel" id="panel2">
+        <h3>Your Details</h3><p>We will use this information for your e-ticket and confirmation.</p>
+        <div class="form-group"><label class="form-label" for="custName">Full name</label><input type="text" id="custName" placeholder="Enter your full name" maxlength="80"></div>
+        <div class="form-row"><div class="form-group"><label class="form-label" for="custEmail">Email address</label><input type="email" id="custEmail" placeholder="your@email.com"></div><div class="form-group"><label class="form-label" for="custPhone">Mobile number</label><input type="tel" id="custPhone" placeholder="10-digit number" maxlength="10"></div></div>
+        <div class="form-group"><label class="form-label" for="custSpecial">Special request</label><textarea id="custSpecial" rows="4" placeholder="Birthday note, group request, or anything useful for the team."></textarea></div>
+        <div id="p2error" class="error-msg"></div>
+        <div class="nav-btns"><button class="btn btn-outline" onclick="goToStep(1)" type="button">Back</button><button class="btn btn-primary" onclick="goToStep3()" type="button">Review and pay</button></div>
+      </div>
+      <div class="panel" id="panel3">
+        <h3>Review Your Booking</h3><p>Double-check the details before completing payment.</p>
+        <div class="summary-card" id="summaryCard">Loading...</div>
+        <button class="pay-btn" id="payBtn" onclick="initiatePayment()" type="button">Pay securely with Razorpay</button>
+        <p class="razorpay-note" style="margin-top:14px;">UPI, cards, and net banking are supported through the existing secure payment flow.</p>
+        <div class="nav-btns"><button class="btn btn-outline btn-sm" onclick="goToStep(1)" type="button">Change ticket</button><button class="btn btn-outline btn-sm" onclick="goToStep(2)" type="button">Edit details</button></div>
+      </div>
+    </main>
+  </div>
+</section>
+<div id="toast"></div>
+<script src="js/tickets-data.js"></script>
+<script src="js/main.js"></script>
+<script src="js/booking.js"></script>
+</body>
+</html>

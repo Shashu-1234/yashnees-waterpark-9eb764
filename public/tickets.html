@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tickets & Passes | Yashneesh Fun World</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+.page-shell { padding: 132px 0 72px; }
+.hero-card { padding: 34px; }
+.ticket-layout { display:grid; grid-template-columns:1.12fr .88fr; gap:22px; margin-top:26px; align-items:start; }
+.tickets-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
+.ticket-card { position:relative; padding:28px; overflow:hidden; }
+.ticket-card.popular { border-color:rgba(140,236,255,.34); background:linear-gradient(180deg, rgba(140,236,255,.08), rgba(255,255,255,.03)); }
+.ticket-card::before { content:''; position:absolute; inset:auto -50px -50px auto; width:150px; height:150px; border-radius:50%; background:radial-gradient(circle, rgba(140,236,255,.14), transparent 70%); }
+.ticket-card > * { position:relative; z-index:1; }
+.ticket-label { color:var(--muted-soft); font-size:.74rem; text-transform:uppercase; letter-spacing:.18em; font-weight:800; margin-bottom:8px; }
+.ticket-name { font-family:'Cormorant Garamond',serif; font-size:2rem; margin-bottom:10px; }
+.ticket-desc, .ticket-note, .side-card p, .side-card li { color:var(--muted); line-height:1.8; }
+.ticket-price-row { display:flex; align-items:end; gap:10px; margin:16px 0 10px; }
+.ticket-price { font-size:2.7rem; font-weight:800; line-height:1; }
+.ticket-old-price { color:var(--muted-soft); text-decoration:line-through; font-size:1rem; }
+.ticket-features { list-style:none; display:grid; gap:10px; margin:18px 0 22px; }
+.ticket-features li { padding:11px 13px; border-radius:16px; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); color:var(--muted); }
+.ticket-cta { width:100%; }
+.side-stack { display:grid; gap:18px; }
+.side-card { padding:26px; }
+.side-card h3 { font-family:'Cormorant Garamond',serif; font-size:2rem; margin:10px 0; }
+.side-card ul { list-style:none; display:grid; gap:10px; margin-top:16px; }
+.faq-grid { display:grid; gap:14px; max-width:860px; margin:34px auto 0; }
+.faq-item { overflow:hidden; }
+.faq-q { width:100%; background:transparent; color:var(--text); display:flex; align-items:center; justify-content:space-between; gap:16px; padding:20px 22px; font-weight:700; }
+.faq-a { display:none; padding:0 22px 22px; color:var(--muted); line-height:1.8; }
+.faq-item.open .faq-a { display:block; }
+@media (max-width:1020px){ .ticket-layout, .tickets-grid { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<nav id="navbar"><div class="container nav-inner"><a href="index.html" class="nav-logo">Yashneesh <span>Fun World</span></a><ul class="nav-links" id="navLinks"><li><a href="index.html">Home</a></li><li><a href="rides.html">Rides</a></li><li><a href="tickets.html">Tickets</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="contact.html">Contact</a></li><li><a href="booking.html" class="nav-book">Book Now</a></li></ul><button class="nav-hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button></div></nav>
+<button id="sticky-cta" onclick="location.href='booking.html'">Book Tickets</button>
+<section class="page-shell">
+  <div class="container">
+    <div class="hero-card card fade-in">
+      <div class="eyebrow"><span class="live-dot"></span> Ticket pricing and passes</div>
+      <h1 class="page-hero-title">Clear Passes And Better Booking Decisions</h1>
+      <p class="lead">Compare available passes, understand what is included, and move into booking with a cleaner and more confident ticket flow.</p>
+    </div>
+    <div class="ticket-layout">
+      <div class="tickets-grid" id="ticketsGrid"><div class="card" style="padding:28px; color:var(--muted); grid-column:1/-1;">Loading ticket types...</div></div>
+      <aside class="side-stack">
+        <div class="side-card card reveal"><span class="pill brand">Included</span><h3>What guests want to know first</h3><ul><li>All main attractions are included with standard entry.</li><li>Children below 2.5 feet enter free.</li><li>Online booking reduces time at the gate.</li></ul></div>
+        <div class="side-card card reveal"><span class="pill sand">Visit essentials</span><p>Park hours are 10:30 AM to 4:00 PM every day. Food court items and lockers are separate. Group visits can be arranged through support.</p></div>
+        <div class="side-card card reveal"><span class="pill coral">Need help?</span><p>Call <a href="tel:+918884142211" style="color:var(--brand);">+91 88841 42211</a> for birthdays, group tickets, and special plans.</p></div>
+      </aside>
+    </div>
+    <div class="faq-grid">
+      <div class="faq-item card reveal"><button class="faq-q">Can tickets be rescheduled?<span>+</span></button><div class="faq-a">Please contact support before the visit date if you need to move the booking.</div></div>
+      <div class="faq-item card reveal"><button class="faq-q">Are food and lockers included?<span>+</span></button><div class="faq-a">No. Food court purchases and lockers are charged separately.</div></div>
+      <div class="faq-item card reveal"><button class="faq-q">Will this still work if the backend is down?<span>+</span></button><div class="faq-a">The page now shows fallback ticket data for preview, but real bookings still require the live backend.</div></div>
+    </div>
+  </div>
+</section>
+<footer><div class="container"><div class="footer-grid"><div><div class="footer-logo">Yashneesh Fun World</div><p class="footer-about">Choose the right pass quickly, then move straight into a polished booking experience.</p></div><div><div class="footer-heading">Explore</div><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="rides.html">Rides</a></li><li><a href="gallery.html">Gallery</a></li></ul></div><div><div class="footer-heading">Book</div><ul class="footer-links"><li><a href="booking.html">Reserve now</a></li><li><a href="contact.html">Support</a></li></ul></div><div><div class="footer-heading">Contact</div><ul class="footer-links"><li><a href="tel:+918884142211">+91 88841 42211</a></li><li>Belagavi, Karnataka</li><li>Daily 10:30 AM to 4:00 PM</li></ul></div></div><div class="footer-bottom"><div class="footer-copy">&copy; 2026 Yashneesh Fun World.</div></div></div></footer>
+<div id="toast"></div>
+<script src="js/tickets-data.js"></script>
+<script src="js/main.js"></script>
+<script>
+function observeTicketCards() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.ticket-card.reveal').forEach((card) => observer.observe(card));
+}
+
+function renderTickets(tickets) {
+  const labels = { child: 'Junior', adult: 'Classic', premium: 'Premium', couple: 'Couple' };
+  const grid = document.getElementById('ticketsGrid');
+  grid.innerHTML = tickets.map((ticket) => `
+    <article class="ticket-card card reveal ${ticket.badge === 'Most Popular' ? 'popular' : ''}">
+      <div class="ticket-label">${labels[ticket.category] || 'Park'} Pass</div>
+      ${ticket.badge ? `<span class="badge badge-brand">${ticket.badge}</span>` : ''}
+      <h3 class="ticket-name">${ticket.name}</h3>
+      <p class="ticket-desc">${ticket.description}</p>
+      <div class="ticket-price-row">
+        <div class="ticket-price">INR ${ticket.price}</div>
+        ${ticket.original_price ? `<div class="ticket-old-price">INR ${ticket.original_price}</div>` : ''}
+      </div>
+      <p class="ticket-note">Per guest. Core attraction access included.</p>
+      <ul class="ticket-features">${ticket.features.map((feature) => `<li>${feature}</li>`).join('')}</ul>
+      <button class="btn ${ticket.badge === 'Most Popular' ? 'btn-primary' : 'btn-outline'} ticket-cta" onclick="bookTicket(${ticket.id}, '${ticket.name.replace(/'/g, "\\'")}')">Book ${ticket.name}</button>
+    </article>
+  `).join('');
+  observeTicketCards();
+}
+
+async function loadTickets() {
+  let tickets = [];
+  let fallback = false;
+  try {
+    const response = await fetch('/api/tickets');
+    if (!response.ok) throw new Error('API unavailable');
+    const payload = await response.json();
+    tickets = payload.data || [];
+  } catch (error) {
+    tickets = window.FALLBACK_TICKETS || [];
+    fallback = true;
+  }
+  renderTickets(tickets);
+  if (fallback && typeof showToast === 'function') {
+    showToast('Live ticket API is unavailable. Showing fallback pricing for preview.', 'error');
+  }
+}
+
+function bookTicket(id, name) {
+  window.location.href = `booking.html?ticket=${id}&name=${encodeURIComponent(name)}`;
+}
+
+document.querySelectorAll('.faq-q').forEach((button) => {
+  button.addEventListener('click', () => button.parentElement.classList.toggle('open'));
+});
+
+loadTickets();
+</script>
+</body>
+</html>
