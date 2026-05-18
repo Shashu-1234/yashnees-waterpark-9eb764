@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Yashneesh Fun World in Belagavi with thrilling rides, wave pool fun, family splash zones, and easy online ticket booking.">
+<title>Yashneesh Fun World | Water Park Fun In Belagavi</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+.arrival-shell { padding: 112px 0 74px; position: relative; }
+.arrival-shell::before { content: ''; position: absolute; inset: 40px 0 auto; height: 580px; background: radial-gradient(circle at 18% 30%, rgba(140,236,255,.16), transparent 26%), radial-gradient(circle at 78% 14%, rgba(255,231,191,.14), transparent 24%), radial-gradient(circle at 54% 54%, rgba(177,162,255,.12), transparent 24%); pointer-events: none; filter: blur(10px); }
+.hero-stage { position: relative; display: grid; grid-template-columns: 1.08fr .92fr; gap: 22px; align-items: stretch; z-index: 1; }
+.cinema-panel { position: relative; min-height: 760px; border-radius: 42px; overflow: hidden; border: 1px solid rgba(255,255,255,.12); box-shadow: 0 42px 120px rgba(0,0,0,.42); background: #03070d; }
+.cinema-panel::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(5,10,18,.08), rgba(5,10,18,.78) 70%, rgba(5,10,18,.94) 100%), radial-gradient(circle at top right, rgba(140,236,255,.34), transparent 28%), linear-gradient(120deg, rgba(255,255,255,.1), transparent 32%); z-index: 1; }
+.hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.04); }
+.hero-noise { position: absolute; inset: 0; opacity: .15; mix-blend-mode: screen; background-image: radial-gradient(rgba(255,255,255,.7) .6px, transparent .6px); background-size: 12px 12px; z-index: 1; }
+.cinema-copy { position: relative; z-index: 2; min-height: 760px; display: flex; flex-direction: column; justify-content: space-between; padding: 34px; }
+.status-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.status-chip { display: inline-flex; align-items: center; gap: 10px; padding: 10px 16px; border-radius: 999px; background: rgba(7,17,31,.54); border: 1px solid rgba(255,255,255,.1); color: var(--text); font-size: .76rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; backdrop-filter: blur(12px); }
+.status-note { color: rgba(237,246,255,.7); font-size: .88rem; }
+.hero-copy-main { max-width: 760px; }
+.hero-display { font-family: 'Cormorant Garamond', serif; font-size: clamp(4.2rem, 8vw, 7.8rem); line-height: .84; margin: 18px 0 16px; letter-spacing: -.02em; }
+.hero-display .line-soft { color: rgba(237,246,255,.62); display: block; }
+.hero-display .line-brand { color: var(--brand); display: block; text-shadow: 0 0 24px rgba(140,236,255,.16); }
+.hero-summary { max-width: 620px; color: rgba(237,246,255,.82); font-size: 1.04rem; line-height: 1.9; }
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin: 30px 0 0; }
+.hero-metric-row { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 14px; margin-top: 26px; max-width: 760px; }
+.hero-metric { padding: 18px 18px 20px; border-radius: 24px; background: rgba(7,17,31,.48); border: 1px solid rgba(255,255,255,.12); backdrop-filter: blur(12px); }
+.hero-metric strong { display: block; font-size: 1.7rem; }
+.hero-metric span { display: block; margin-top: 7px; color: var(--muted); font-size: .84rem; line-height: 1.6; }
+.hero-metric em { font-style: normal; color: var(--champagne); }
+.side-column { display: grid; gap: 18px; }
+.lux-card { padding: 28px; position: relative; overflow: hidden; }
+.lux-card::before { content: ''; position: absolute; inset: auto -64px -64px auto; width: 180px; height: 180px; border-radius: 50%; background: radial-gradient(circle, rgba(140,236,255,.14), transparent 70%); }
+.lux-card > * { position: relative; z-index: 1; }
+.lux-card h3, .spot-card h3, .ticket-capsule h3, .final-cta h2 { font-family: 'Cormorant Garamond', serif; }
+.lux-card h3 { font-size: 2.1rem; margin: 12px 0 8px; line-height: .96; }
+.lux-card p { color: var(--muted); line-height: 1.8; }
+.micro-list { list-style: none; display: grid; gap: 11px; margin-top: 18px; }
+.micro-list li { padding: 11px 14px; border-radius: 18px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); color: var(--muted); }
+.media-stack { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.media-tile { min-height: 250px; border-radius: 30px; overflow: hidden; position: relative; border: 1px solid rgba(255,255,255,.1); box-shadow: var(--shadow-md); background-size: cover; background-position: center; }
+.media-tile::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(7,17,31,.06), rgba(7,17,31,.68)); }
+.media-tile.large { grid-column: 1 / -1; min-height: 210px; }
+.media-caption { position: absolute; left: 18px; right: 18px; bottom: 18px; z-index: 1; }
+.media-caption strong { display: block; font-size: 1.08rem; margin-bottom: 6px; }
+.media-caption span { color: rgba(237,246,255,.74); font-size: .88rem; line-height: 1.6; }
+.marquee-wrap { padding: 8px 0 0; overflow: hidden; }
+.marquee-track { display: flex; gap: 20px; width: max-content; animation: drift 28s linear infinite; }
+.marquee-chip { padding: 14px 22px; border-radius: 999px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08); color: var(--text); font-size: .84rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; }
+.marquee-chip span { color: var(--brand); }
+@keyframes drift { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.spotlight-grid { display: grid; grid-template-columns: .94fr 1.06fr; gap: 22px; align-items: stretch; }
+.editorial-card { padding: 34px; min-height: 100%; display: flex; flex-direction: column; justify-content: space-between; }
+.editorial-card h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 5vw, 4.8rem); line-height: .9; margin: 14px 0; }
+.editorial-card p { color: var(--muted); line-height: 1.9; max-width: 520px; }
+.editorial-points { display: grid; gap: 14px; margin-top: 24px; }
+.editorial-point { padding: 18px 20px; border-radius: 22px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); }
+.editorial-point strong { display: block; margin-bottom: 5px; }
+.editorial-point span { color: var(--muted); line-height: 1.6; font-size: .92rem; }
+.spot-stack { display: grid; gap: 18px; }
+.spot-card { padding: 28px; min-height: 220px; position: relative; overflow: hidden; }
+.spot-card::before { content: ''; position: absolute; inset: auto auto -60px -60px; width: 180px; height: 180px; border-radius: 50%; background: radial-gradient(circle, rgba(255,231,191,.16), transparent 70%); }
+.spot-card h3 { position: relative; z-index: 1; font-size: 2rem; line-height: .95; margin: 10px 0 8px; }
+.spot-card p { position: relative; z-index: 1; color: var(--muted); line-height: 1.8; }
+.split-band { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.video-feature { position: relative; min-height: 360px; border-radius: 34px; overflow: hidden; border: 1px solid rgba(255,255,255,.12); box-shadow: var(--shadow-lg); }
+.video-feature::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(7,17,31,.08), rgba(7,17,31,.8)); z-index: 1; }
+.video-feature video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.video-feature-copy { position: absolute; left: 24px; right: 24px; bottom: 24px; z-index: 2; }
+.video-feature-copy h3 { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; margin: 10px 0 6px; }
+.video-feature-copy p { color: rgba(237,246,255,.8); line-height: 1.7; max-width: 420px; }
+.ticket-runway { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 18px; }
+.ticket-capsule { padding: 30px; position: relative; overflow: hidden; }
+.ticket-capsule:nth-child(2) { margin-top: 30px; }
+.ticket-capsule:nth-child(3) { margin-top: 12px; }
+.ticket-capsule::before { content: ''; position: absolute; inset: auto -48px -48px auto; width: 150px; height: 150px; border-radius: 50%; background: radial-gradient(circle, rgba(140,236,255,.16), transparent 70%); }
+.ticket-capsule > * { position: relative; z-index: 1; }
+.ticket-capsule h3 { font-size: 2.15rem; margin: 14px 0 8px; }
+.ticket-capsule p { color: var(--muted); line-height: 1.8; }
+.capsule-price { font-size: 3rem; font-weight: 800; line-height: 1; margin: 18px 0 12px; }
+.capsule-meta { color: var(--champagne); font-size: .78rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.final-cta { padding: 40px 34px; text-align: center; position: relative; overflow: hidden; }
+.final-cta::before { content: ''; position: absolute; inset: -20% 12% auto; height: 200px; background: radial-gradient(circle, rgba(140,236,255,.18), transparent 60%); pointer-events: none; }
+.final-cta h2 { position: relative; z-index: 1; font-size: clamp(3rem, 6vw, 5.2rem); line-height: .9; margin: 14px auto; max-width: 820px; }
+.final-cta p { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; color: var(--muted); line-height: 1.9; }
+.final-actions { position: relative; z-index: 1; display: flex; justify-content: center; flex-wrap: wrap; gap: 14px; margin-top: 26px; }
+@media (max-width: 1080px) {
+  .hero-stage, .spotlight-grid, .ticket-runway, .split-band, .media-stack { grid-template-columns: 1fr; }
+  .ticket-capsule:nth-child(2), .ticket-capsule:nth-child(3) { margin-top: 0; }
+}
+@media (max-width: 760px) {
+  .arrival-shell { padding-top: 98px; }
+  .cinema-panel, .cinema-copy { min-height: 620px; }
+  .cinema-copy { padding: 24px; }
+  .hero-metric-row { grid-template-columns: 1fr; }
+  .status-row { align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">Yashneesh <span>Fun World</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="rides.html">Rides</a></li>
+      <li><a href="tickets.html">Tickets</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="booking.html" class="nav-book">Book Now</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<button id="sticky-cta" onclick="location.href='booking.html'">Book Tickets</button>
+
+<section class="arrival-shell">
+  <div class="container hero-stage">
+    <div class="cinema-panel fade-in" data-parallax="0.06">
+      <video class="hero-video" autoplay muted loop playsinline poster="images/Main%20pool.jpeg">
+        <source src="videos/hero.mp4" type="video/mp4">
+      </video>
+      <div class="hero-noise"></div>
+      <div class="cinema-copy">
+        <div class="status-row">
+          <div class="status-chip"><span class="live-dot"></span> Signature water escape</div>
+          <div class="status-note">A full-day water park destination for families, friends, and celebration groups.</div>
+        </div>
+        <div class="hero-copy-main">
+          <div class="eyebrow">Belagavi water park destination</div>
+          <h1 class="hero-display">
+            <span class="line-soft">Not just a park.</span>&ensp;
+            <span class="line-brand">A full splash-day escape.</span>
+          </h1>
+          <p class="hero-summary">From thrilling slides and wave-pool energy to kids' splash fun and group celebrations, Yashneesh Fun World is built for the kind of day people talk about long after they leave.</p>
+          <div class="hero-actions">
+            <a href="booking.html" class="btn btn-primary btn-lg">Reserve Your Visit</a>
+            <a href="gallery.html" class="btn btn-outline btn-lg">See The Vibe</a>
+          </div>
+          <div class="hero-metric-row">
+            <div class="hero-metric"><strong data-target="20" data-suffix="+">0</strong><span>slides, splash zones, and crowd magnets.</span></div>
+            <div class="hero-metric"><strong>10:30 AM</strong><span>daily gates open with <em>all-day energy</em>.</span></div>
+            <div class="hero-metric"><strong>Family + thrill</strong><span>an experience built for every tempo of day.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-column fade-in fade-in-delay-2">
+      <article class="lux-card card">
+        <span class="pill brand">Why guests love it</span>
+        <h3>Big rides, bright moments, and all-day excitement</h3>
+        <p>Whether you are planning a family outing, a birthday visit, or a fun weekend with friends, the park brings together thrill, comfort, and celebration in one place.</p>
+        <ul class="micro-list">
+          <li>Wave pool, rain dance, and crowd-favorite attractions</li>
+          <li>Family-friendly spaces for younger visitors too</li>
+          <li>Simple online booking for a smoother entry</li>
+        </ul>
+      </article>
+      <div class="media-stack">
+        <article class="media-tile" style="background-image:url('images/Adult1.jpeg');" data-parallax="0.04">
+          <div class="media-caption"><strong>Festival energy</strong><span>Weekends, birthdays, and group days feel alive before guests even book.</span></div>
+        </article>
+        <article class="media-tile" style="background-image:url('images/kids.jpeg');" data-parallax="0.05">
+          <div class="media-caption"><strong>Family comfort</strong><span>Kids and family zones bring balance to the high-thrill water story.</span></div>
+        </article>
+        <article class="media-tile large" style="background-image:url('images/Main%20pool.jpeg');" data-parallax="0.03">
+          <div class="media-caption"><strong>The main pool moment</strong><span>Big, bright, social, and cinematic enough to carry the whole first impression.</span></div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="marquee-wrap">
+  <div class="marquee-track">
+    <div class="marquee-chip"><span>Wave Pool</span> / bigger crowd energy</div>
+    <div class="marquee-chip"><span>Rain Dance</span> / celebration-ready atmosphere</div>
+    <div class="marquee-chip"><span>Family Zones</span> / softer splash spaces</div>
+    <div class="marquee-chip"><span>Premium Passes</span> / faster, smoother entry</div>
+    <div class="marquee-chip"><span>Birthday Outings</span> / built for memorable group days</div>
+    <div class="marquee-chip"><span>Wave Pool</span> / bigger crowd energy</div>
+    <div class="marquee-chip"><span>Rain Dance</span> / celebration-ready atmosphere</div>
+    <div class="marquee-chip"><span>Family Zones</span> / softer splash spaces</div>
+    <div class="marquee-chip"><span>Premium Passes</span> / faster, smoother entry</div>
+    <div class="marquee-chip"><span>Birthday Outings</span> / built for memorable group days</div>
+  </div>
+</section>
+
+<section>
+  <div class="container spotlight-grid">
+    <article class="editorial-card card reveal">
+      <div>
+        <div class="section-eyebrow">Signature Realms</div>
+        <h2>Three moods. One unforgettable park day.</h2>
+        <p>Every great park day has its own rhythm. Some visitors come for adrenaline, some for family fun, and some for the pure joy of spending the day together.</p>
+      </div>
+      <div class="editorial-points">
+        <div class="editorial-point">
+          <strong>Thrill zone</strong>
+          <span>Slides, drops, water rushes, and that high-energy "we should go there" feeling.</span>
+        </div>
+        <div class="editorial-point">
+          <strong>Family zone</strong>
+          <span>Safer play, kids' splash moments, and a more relaxed rhythm for mixed-age groups.</span>
+        </div>
+        <div class="editorial-point">
+          <strong>Celebration zone</strong>
+          <span>Birthday groups, student visits, and rain dance energy that feels social and camera-ready.</span>
+        </div>
+      </div>
+    </article>
+
+    <div class="spot-stack">
+      <article class="spot-card card reveal">
+        <span class="pill coral">High thrill</span>
+        <h3>For the people who want adrenaline before lunch.</h3>
+        <p>Wave action, giant slides, and fast-moving attractions turn the park into something louder and more addictive than a standard family outing.</p>
+      </article>
+      <div class="split-band">
+        <article class="spot-card card reveal">
+          <span class="pill sand">Family glow</span>
+          <h3>Enough softness to make group planning easy.</h3>
+          <p>Comfort matters too, with easier family planning, softer play zones, and space for every age group to enjoy the day.</p>
+        </article>
+        <article class="spot-card card reveal">
+          <span class="pill brand">Social energy</span>
+          <h3>The kind of place people post about.</h3>
+          <p>Music, water, laughter, and shared memories make this the kind of outing people want to come back to.</p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-band">
+  <div class="container spotlight-grid">
+    <div class="video-feature reveal">
+      <video autoplay muted loop playsinline poster="images/Adult.jpeg">
+        <source src="videos/secondary.mp4" type="video/mp4">
+      </video>
+      <div class="video-feature-copy">
+        <span class="pill brand">Park atmosphere</span>
+        <h3>More than rides. A full day-out vibe.</h3>
+        <p>From energetic water zones to family moments and celebration-ready spaces, the park is made to feel lively from the first step inside.</p>
+      </div>
+    </div>
+    <article class="editorial-card card reveal">
+      <div>
+        <div class="section-eyebrow">Plan Your Visit</div>
+        <h2>Everything you need for an easy park day</h2>
+        <p>Explore the rides, compare ticket options, and move into booking with a clear path that helps guests plan the day confidently.</p>
+      </div>
+      <div class="editorial-points">
+        <div class="editorial-point">
+          <strong>Rides page</strong>
+          <span>A cleaner path for guests who want to know exactly what the attractions are.</span>
+        </div>
+        <div class="editorial-point">
+          <strong>Tickets page</strong>
+          <span>See the available passes clearly before choosing the one that fits your visit.</span>
+        </div>
+        <div class="editorial-point">
+          <strong>Booking page</strong>
+          <span>A direct booking flow makes it easier to reserve without confusion.</span>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-eyebrow">Popular Passes</div>
+        <h2 class="section-title">Choose the tempo of your day</h2>
+        <p class="section-sub">Take a quick look at the most popular pass options before opening the full tickets page.</p>
+      </div>
+      <a href="tickets.html" class="btn btn-outline">Open Full Ticket Page</a>
+    </div>
+    <div class="ticket-runway">
+      <article class="ticket-capsule card reveal">
+        <span class="capsule-meta">Most booked</span>
+        <h3>Adult Pass</h3>
+        <div class="capsule-price">INR 250</div>
+        <p>Full access to the main park experience with the strongest balance of value and excitement.</p>
+      </article>
+      <article class="ticket-capsule card reveal">
+        <span class="capsule-meta">Family pick</span>
+        <h3>Child Pass</h3>
+        <div class="capsule-price">INR 150</div>
+        <p>Smaller guests get a friendlier ticket choice built around splash play and family comfort.</p>
+      </article>
+      <article class="ticket-capsule card reveal">
+        <span class="capsule-meta">Elevated choice</span>
+        <h3>Premium Pass</h3>
+        <div class="capsule-price">INR 390</div>
+        <p>Priority, convenience, and a smoother visit for people who want the day to feel easier and better.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="final-cta card reveal">
+      <div class="section-eyebrow">Ready To Visit?</div>
+      <h2>Plan the day. Feel the excitement. Book with confidence.</h2>
+      <p>Pick your rides, choose the right pass, and get ready for a water park experience built around fun, comfort, and memorable group moments.</p>
+      <div class="final-actions">
+        <a href="booking.html" class="btn btn-primary btn-lg">Book Tickets</a>
+        <a href="rides.html" class="btn btn-outline btn-lg">Explore Attractions</a>
+        <a href="contact.html" class="btn btn-outline btn-lg">Plan A Group Visit</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">Yashneesh Fun World</div>
+        <p class="footer-about">Thrill rides, family splash fun, and celebration-ready energy in one exciting Belagavi water park destination.</p>
+      </div>
+      <div>
+        <div class="footer-heading">Explore</div>
+        <ul class="footer-links">
+          <li><a href="rides.html">Rides</a></li>
+          <li><a href="tickets.html">Tickets</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Plan</div>
+        <ul class="footer-links">
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="booking.html">Booking</a></li>
+          <li>Belagavi, Karnataka</li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Visit</div>
+        <ul class="footer-links">
+          <li><a href="tel:+918884142211">+91 88841 42211</a></li>
+          <li>Open daily 10:30 AM to 4:00 PM</li>
+          <li><a href="mailto:info@yashneeshfunworld.com">info@yashneeshfunworld.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">&copy; 2026 Yashneesh Fun World. All rights reserved.</div>
+      <div class="footer-copy">Luxury-feel splash-day destination in Belagavi</div>
+    </div>
+  </div>
+</footer>
+
+<div id="toast"></div>
+<script src="js/main.js"></script>
+</body>
+</html>
